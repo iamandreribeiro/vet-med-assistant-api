@@ -66,7 +66,6 @@ export const processarMensagem = async (req, res) => {
     const dadosProduto = await buscarDadosProduto(termo);
 
     return res.json({
-      texto: `💊 ${dadosProduto.descricao}\n💰 Preço: R$ ${dadosProduto.preco}\n📦 Estoque: ${dadosProduto.estoque}`,
       texto: `Aqui está! Encontrei ** ${dadosProduto.descricao} **.\n💰 Preço: R$ ${dadosProduto.preco}\n📦 Estoque: ${dadosProduto.estoque} unidades.`,
       alerta: "⚠️IMPORTANTE⚠️: O uso deste medicamento requer prescrição veterinária obrigatória. Consulte seu veterinário!",
       token: novoToken
