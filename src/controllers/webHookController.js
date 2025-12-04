@@ -64,9 +64,16 @@ export const processarMensagem = async (req, res) => {
 
   if (pediuInfo) {
     const dadosProduto = await buscarDadosProduto(termo);
+    let sTexto = `Aqui está! Encontrei ** ${dadosProduto.descricao} **.\n💰 Preço: R$ ${dadosProduto.preco}\n`;
+
+    if (!dadosProduto.estoque) {
+      sTexto += `😢 Infelizmente não há estoque deste produto!`;
+    } else {
+      sTexto += `📦 Estoque: ${dadosProduto.estoque} unidades.`;
+    }
 
     return res.json({
-      texto: `Aqui está! Encontrei ** ${dadosProduto.descricao} **.\n💰 Preço: R$ ${dadosProduto.preco}\n📦 Estoque: ${dadosProduto.estoque} unidades.`,
+      texto: sTexto,
       alerta: "⚠️IMPORTANTE⚠️: O uso deste medicamento requer prescrição veterinária obrigatória. Consulte seu veterinário!",
       token: novoToken
     });
