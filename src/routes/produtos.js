@@ -1,8 +1,9 @@
 import { Router } from "express";
-import { processarMensagem } from "../controllers/webHookController.js";
+import { getProdutos, getProdutoById } from "../controllers/produtosController.js";
 
 const router = Router();
 
-router.post("/webhook", processarMensagem);
+router.get("/", getProdutos);
+router.get("/:id", getProdutoById);
 
 export default router;
